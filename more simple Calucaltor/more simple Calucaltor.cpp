@@ -1673,9 +1673,10 @@ void FunctionMatrix(void) {
 }
 
 void ExitCalculator(void) {
+
     clearSecreen();
     cout << endl << endl;
-    cout << tabs(2) << "Thank you sir to used My Calculator (:";
+    cout << tabs(2) << "Thank you sir to used My Calculator (:\n";
     cout << tabs(2) << "Programmed By Ahmed Jehad Ahmed \n";
 
     return;
@@ -1834,11 +1835,13 @@ void FunctionTabel(void) {
 
 void StartCalculator(void) {
 
-    while (true) {
+    int choise = { 0 };
+
+    while (choise != 17) {
 
         clearSecreen();
         MenuCalculator();
-        int choise = { 0 };
+
         choise = { readNumber("Enter the Operation : ") };
 
         switch (choise) {
@@ -1902,3 +1905,5 @@ void StartCalculator(void) {
         }
     }
 }
+
+// Ahmed Jehad Ahmed 
