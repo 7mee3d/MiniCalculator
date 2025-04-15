@@ -316,11 +316,11 @@ int FactorialNumber(int& number) {
 
 //Divion Function calc 
 
-int ModulusTwoNumbers_Float(float& number1, float& number2) {
+float ModulusTwoNumbers_Float(float& number1, float& number2) {
 
-    int quotient = static_cast<int>(number1 / number2);  // القسمة الصحيحة
-    float result = number1 - (quotient * number2);       // نحسب الباقي
-    return static_cast<int>(result);                     // نحوله لـ int لو تبيه كعدد صحيح
+    int quotient = static_cast<int>(number1 / number2);  
+    float result = number1 - (quotient * number2);       
+    return static_cast<float>(result);
 }
 
 int ModulusTwoNumbers_Integer(int& number1, int& number2) {
@@ -719,7 +719,7 @@ void printResultOperationDivionInt(int &result) {
 void printResultOperationDivionFloat(float& result) {
 
     cout << tabs(2) << "|-------------------------------------------------------------|\n";
-    cout << tabs(2) << "Result finial Divion all numbers to enterd = "; printf("%+f", result);    cout << '\n';
+    cout << tabs(2) << "Result finial Divion all numbers to enterd = "; printf("%+.6f", result);    cout << '\n';
     cout << tabs(2) << "|-------------------------------------------------------------|\n";
 
 
@@ -1682,7 +1682,6 @@ void ExitCalculator(void) {
 }
 int main()
 {
-
     StartCalculator();
     //Ahmed Jehad Ahmed 
  }
