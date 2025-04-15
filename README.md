@@ -1,9 +1,13 @@
 # 🧮 Ultimate C++ Calculator Program ✨
 
+
 ## 🌟 Overview
 This is a feature-rich console-based calculator program written in C++ that offers **30+ mathematical operations** with beautiful console formatting. The program combines simplicity with advanced functionality in an intuitive menu-driven interface.
 
+
+
 ## 🎯 Features
+
 
 ### 🔢 Basic Arithmetic Operations
 | Operation | Emoji | Description |
@@ -16,6 +20,7 @@ This is a feature-rich console-based calculator program written in C++ that offe
 | Square | ² | Calculates square of a number |
 | Square Root | √ | Calculates precise square roots |
 
+
 ### 🔍 Number Analysis
 | Operation | Emoji | Description |
 |-----------|-------|-------------|
@@ -25,12 +30,14 @@ This is a feature-rich console-based calculator program written in C++ that offe
 | Factorial | ❗ | Calculates factorial of numbers |
 | Logarithm | 📊 | Calculates base-10 logarithm |
 
+
 ### 📐 Advanced Mathematics
 | Operation | Emoji | Description |
 |-----------|-------|-------------|
 | Trigonometry | 📐 | sin/cos/tan functions with degree input |
 | Matrix Ops | 🧩 | Full matrix operations (diagonals, swapping, etc.) |
 | Max/Min | ⬆️⬇️ | Finds maximum/minimum in number sets |
+
 
 ### 📋 Data Management
 | Feature | Emoji | Description |
@@ -39,7 +46,12 @@ This is a feature-rich console-based calculator program written in C++ that offe
 | String Tables | 🔤 | Store and manage text entries |
 | Clear Functions | 🧹 | Clear tables and reset operations |
 
+
+
+
+
 ## 🏗️ Code Architecture
+
 
 ### 🧩 Main Components
 ```mermaid
@@ -55,3 +67,43 @@ graph TD
     D --> D2[Matrix Ops]
     E --> E1[Integer Tables]
     E --> E2[String Tables]
+
+```
+
+
+
+
+# 🚀 C++ Advanced Calculator - Run Guide
+
+## 💻 System Requirements
+- Windows/macOS/Linux OS
+- C++ compiler (`g++` or `clang++` recommended)
+
+## 🛠️ Installation & Execution
+
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/advanced-calculator.git
+cd advanced-calculator
+```
+
+```bash
+g++ calculator.cpp -o calculator -O2
+```
+
+```bash
+./calculator
+```
+
+
+
+
+# 👨💻 Author
+
+**Ahmed Jehad Ahmed**  
+
+
+🔗 [GitHub Profile](https://github.com/7mee3d)
+
+📧 [Email Contact](mailto:enginnerahemdjehad2004@gmail.com)
