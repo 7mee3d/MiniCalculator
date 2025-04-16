@@ -7,7 +7,9 @@
 #include <iomanip>
 #include <string> 
 #include <thread>
+#include <fstream>
 #include <chrono>
+
 
 
 const float kPI = 3.14159265F;
@@ -263,9 +265,12 @@ void printElementInTabel(vector<int>& vec) {
 
 void printElementInTabel_String(vector<string>& vec) {
 
-    int  numberCount = 1;
+
+
     if (!(vec.empty()))
+
         for (string& line : vec) {
+            int  numberCount = 1;
             cout << tabs(2);
             cout << "[" << numberCount << "]- " << line << endl;
             numberCount++;
@@ -388,6 +393,8 @@ void fillArrayDynamiclyWithSize_Integer(int* array, int& sizeArray) {
 void readElementToTabel(vector <int>& vec) {
 
     char Choise{ 'Y' };
+
+    cin.ignore();
     while (Choise == 'Y' || Choise == 'y') {
         int number{};
         number = { readNumber("Enter the number to adding the tabel : ") };
@@ -395,6 +402,7 @@ void readElementToTabel(vector <int>& vec) {
         vec.push_back(number);
         cout << tabs(2) << "Are you Adding anther ! Please Sir enter the [Y/y] to be Again Enterd : ";
         cin >> Choise;
+        cin.ignore();
     }
     cout << "\n\n";
     cout << tabs (2) << "Note!! - The Add Elements The Tabel is Seccssfuly (:\n\n";
@@ -404,6 +412,7 @@ void readElementToTabel(vector <int>& vec) {
 void readElementToTabelString(vector <string>& vec) {
     char Choise{ 'Y' };
     cin.ignore(); 
+
     while (Choise == 'Y' || Choise == 'y') {
         string Line{};
         cout << tabs(2) << "Enter the word to adding the tabel : ";
@@ -1028,7 +1037,6 @@ void Function_String_AddElement(vector <string>& vec) {
 }
 
 void Function_String_ViewElement(vector <string>& vec) {
-    static int numberCount = 1; 
 
     cout << endl << endl;
     clearSecreen();
@@ -1038,8 +1046,6 @@ void Function_String_ViewElement(vector <string>& vec) {
     cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
     std::this_thread::sleep_for(std::chrono::seconds(7));
 
-
-    numberCount = 1;
     clearSecreen();
 }
 
@@ -1762,9 +1768,14 @@ void ExitCalculator(void) {
 
     return;
 }
+
+
 int main()
 {
-    StartCalculator();
+
+    void (*p) (void) = StartCalculator;
+    p();
+  
     //Ahmed Jehad Ahmed 
  }
 
