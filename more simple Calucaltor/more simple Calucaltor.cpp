@@ -330,9 +330,10 @@ int ModulusTwoNumbers_Integer(int& number1, int& number2) {
 
 float divionTwoNumbers(float& number1, float& number2) {
 
-    int numberSecFDivsionZero = { 100 };
+    float numberSecFDivsionZero = {100.0F};
     if (number2 == 0)
         return numberSecFDivsionZero;
+
     else 
     return (number1 / number2);
 
@@ -681,6 +682,13 @@ void printHeaderMatrixNumberOperationFillMatrixHello(void) {
     cout << tabs(2) << "|--------------+[ Welcome The Department Matrix To Fill Matrix Operation ]+-------------|\n";
     cout << tabs(2) << "|---------------------------------------------------------------------------------------|\n\n";
 }
+
+void printHeaderMatrixNumberFillPositionNumbersOperation(void) {
+    clearSecreen();
+    cout << tabs(2) << "|--------------------------------------------------------------------------------------------|\n";
+    cout << tabs(2) << "|--------------+[ Welcome The Department Matrix Fill Row And Column Operation ]+-------------|\n";
+    cout << tabs(2) << "|--------------------------------------------------------------------------------------------|\n\n";
+} 
 
 //----------------------------------------------- 
 // Result operation 
@@ -1400,6 +1408,21 @@ void printArray2D(int* array[], int& row, int& column) {
 
 }
 
+
+void printArray2DScpsialSectionFillPositionMatrix(int* array[], int& row, int& column, string const message ) {
+
+    cout << endl;
+    cout << tabs(2) << message << "\n\n";
+    for (int i = 0; i < row; i++) {
+        cout << tabs(3) << "[ ";
+        for (int j = 0; j < column; j++)
+            cout << array[i][j] << " ";
+        cout << "] \n";
+    }
+    cout << endl;
+    cout << tabs(2) << "| -------------------------------------------------------------------------------------------|\n";
+
+}
 string returnSeparator(int& number, int& size) {
     return (size - 1 > number) ? ", " : " "; 
 }
@@ -1473,6 +1496,8 @@ void FunctionMainDiagonal(int &row , int &column , int *Array2D[]) {
     if (row % 2 == 0 && column % 2 == 0) {
         findMainDiagonal(Array2D, row, column, arrayR, sizeR);
         printArrayMainDiagmoal(arrayR, sizeR);
+        cout << tabs(2) << "Please Sir wait [5]seconds to return of menu and Thank You (:\n\n";
+        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
     else {
         cout << endl;
@@ -1513,24 +1538,36 @@ void FunctionReplaseRowToRow(int& row, int& column, int* Array2D[]) {
     cout << endl << endl;
 
     if ((row % 2 == 0) && (column % 2 == 0)) {
-
-        row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons ") };
-        row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons") };
+        cout << endl;
+       // cout << endl;
+        printHeaderMatrixNumberFillPositionNumbersOperation();
+        cout << endl;
+        printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
+        cout << endl;
+        row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
+        row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
 
         while (row < row1 || row < row1) {
 
-            cout << tabs(2) << "Please Sir Enter Again row and Column is Square to be Perform operation you : ";
+            cout << endl << endl;
+            cout << tabs(2) << "Please Sir Enter Again row and Column is Square to be Perform operation you \n";
+            cout << tabs(2) << "Please Sir Enter Again row and Column Smallest Row Main and Column Man Matrix \n";
             cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
             std::this_thread::sleep_for(std::chrono::seconds(7));
             clearSecreen();
-            row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons ") };
-            row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons") };
+            cout << endl << endl;
+            printHeaderMatrixNumberFillPositionNumbersOperation();
+            cout << endl;
+            printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
+            cout << endl;
+            row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
+            row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
 
 
         }
 
         replaceRowToRow(Array2D, row, column, row1, row2);
-        printArray2D(Array2D, row, column);
+        printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column, "Matrix After the Replase Row to Row ");
         cout << endl;
         cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
         std::this_thread::sleep_for(std::chrono::seconds(7));
@@ -1554,24 +1591,40 @@ void FunctionReplaseColumnToColumn(int& row, int& column, int* Array2D[]) {
     cout << endl << endl;
 
     if (row % 2 == 0 && column % 2 == 0) {
-        int column3 = { readNumber("Enter the column Main , Please Sir Enter Index to column not Poisitons ") };
-        int column4 = { readNumber("Enter the column To Replase , Please Sir Enter Index to column not Poisitons") };
+        cout << endl << endl;
+        printHeaderMatrixNumberFillPositionNumbersOperation();
+        cout << endl;
+        printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
+        cout << endl;
+
+        int column3 = { readNumber("Enter the column Main , Please Sir Enter Index to column not Poisitons : ") };
+        int column4 = { readNumber("Enter the column To Replase , Please Sir Enter Index to column not Poisitons : ") };
         while (column < column3 || column < column4) {
 
-            cout << tabs(2) << "Please Sir Enter Again row and Column is Square to be Perform operation you : ";
+            cout << endl << endl;
+            cout << tabs(2) << "Please Sir Enter Again row and Column is Square to be Perform operation you \n";
+            cout << tabs(2) << "Please Sir Enter Again row and Column Smallest Row Main and Column Man Matrix \n";
             cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
             std::this_thread::sleep_for(std::chrono::seconds(7));
             clearSecreen();
-            column3 = { readNumber("Enter the Column Main , Please Sir Enter Index to Column not Poisitons ") };
-            column4 = { readNumber("Enter the Column To Replase , Please Sir Enter Index to Column not Poisitons") };
+
+            cout << endl << endl;
+            printHeaderMatrixNumberFillPositionNumbersOperation();
+            cout << endl;
+            printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column, "Matrix your enterd Sir ");
+            cout << endl;
+            column3 = { readNumber("Enter the Column Main , Please Sir Enter Index to Column not Poisitons : ") };
+            column4 = { readNumber("Enter the Column To Replase , Please Sir Enter Index to Column not Poisitons : ") };
 
         }
         replaceColumnToColumn(Array2D, row, column, column3, column4);
-        printArray2D(Array2D, row, column);
+        printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix After the Replase Column to Column ");
         cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
         std::this_thread::sleep_for(std::chrono::seconds(7));
     }
     else {
+
+        cout << endl;
             cout << tabs(2) << "Please Sir Enter Again row and Column is Square to be Perform operation you : \n";
             cout << tabs(2) << "Please Sir wait [7]seconds to return of menu and Thank You (:\n\n";
             std::this_thread::sleep_for(std::chrono::seconds(7));
@@ -1778,7 +1831,8 @@ void FunctionDivion(void) {
             {
                 float result = divionTwoNumbers(numberOne, numberTwo);
                 cout << endl;
-                if (result == 100)
+                float number100 = 100.0F; 
+                if (result == number100)
                     cout << tabs(2) << "Not Divion of Zero , Try Again Sir \n";
                 else
                 printResultOperationDivionFloat(result);
