@@ -1642,7 +1642,12 @@ void searchNumberInMatrix(int* array[], int row, int column, int numberToSearch)
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < column; j++) {
             if (array[i][j] == numberToSearch) {
+                if(row % 2 == 0 && column %2 == 0 ) 
                 cout <<  "At [" << i << "][" << j << "]\n";
+                else 
+                    cout << "At [" << i << "][" << j << "]";
+
+                cout << endl;
                 Flagfound = true;
             }
         }
@@ -1704,7 +1709,7 @@ void FunctionMatrix(void) {
     int row = { readNumber("Enter the Row ") };
     cout << endl;
 
-    int column = { readNumber("Enter the Row ") };
+    int column = { readNumber("Enter the Column ") };
 
     int** array2D = new int* [row];
 
