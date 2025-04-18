@@ -1499,7 +1499,7 @@ void FunctionMainDiagonal(int &row , int &column , int *Array2D[]) {
     int row1{ 0 }, row2{};
     int sizeR = min(row, column);
     int* arrayR = new int[sizeR];
-    if (row % 2 == 0 && column % 2 == 0) {
+    if (row % 2 == 0 && column % 2 == 0 || row % 2 != 0 && column % 2 != 0 ) {
         findMainDiagonal(Array2D, row, column, arrayR, sizeR);
         printArrayMainDiagmoal(arrayR, sizeR);
         cout << tabs(2) << "Please Sir wait [5]seconds to return of menu and Thank You (:\n\n";
@@ -1521,7 +1521,7 @@ void FunctionSecoundaryDiagonal(int& row, int& column, int* Array2D[]) {
     int sizeR = min(row, column);
     int* arrayR = new int[sizeR];
 
-    if ((row % 2 == 0 ) && (column % 2 == 0)) {
+    if (row % 2 == 0 && column % 2 == 0 || row % 2 != 0 && column % 2 != 0) {
         cout << endl;
         findSecoundaryDiagonal(Array2D, row, column, arrayR, sizeR);
         printArraySecandaryDiagmoal( arrayR, sizeR);
@@ -1543,7 +1543,7 @@ void FunctionReplaseRowToRow(int& row, int& column, int* Array2D[]) {
     printArray2D(Array2D, row, column);
     cout << endl << endl;
 
-    if ((row % 2 == 0) && (column % 2 == 0)) {
+    if (row % 2 == 0 && column % 2 == 0 || row % 2 != 0 && column % 2 != 0) {
         cout << endl;
        // cout << endl;
         printHeaderMatrixNumberFillPositionNumbersOperation();
@@ -1596,7 +1596,7 @@ void FunctionReplaseColumnToColumn(int& row, int& column, int* Array2D[]) {
     printArray2D(Array2D, row, column);
     cout << endl << endl;
 
-    if (row % 2 == 0 && column % 2 == 0) {
+    if (row % 2 == 0 && column % 2 == 0 || row % 2 != 0 && column % 2 != 0) {
         cout << endl << endl;
         printHeaderMatrixNumberFillPositionNumbersOperation();
         cout << endl;
