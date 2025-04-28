@@ -10,7 +10,9 @@
 #include <fstream>
 #include <chrono>
 
-
+// Preprocessor -- 1 --> run programm / 0 --> Close Or Not perform any operation this calcualtor 
+#define Run 1 
+//#define Run 0
 
 const float kPI = 3.14159265F;
  
@@ -23,6 +25,14 @@ enum enPrimeOrNot {
     PRIME = 1,
     NOT_PRIME = 2
 };
+
+struct stDiscriminantInfo {
+
+    int numberA{ 0 }; // أ
+    int numberB{ 0 }; // ب
+    int numberD{ 0 }; // ج 
+};
+
 
 using namespace std; 
 
@@ -65,7 +75,7 @@ string tabs(int numberTabs) {
 
 }
 
-int readNumber(string const message) {
+int readNumberPositive(string const message) {
 
     int number{};
     cout << tabs(2) << message;
@@ -82,6 +92,23 @@ int readNumber(string const message) {
 
 }
 
+
+int readNumber(string const message) {
+
+    int number{};
+    cout << tabs(2) << message;
+    cin >> number;
+
+    while (cin.fail()) {
+        cin.clear();
+        cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+        cout << tabs(2) << "Note!! Please Sir Enter the Number Not Character . Please Enter the Number Agian : ";
+        cin >> number;
+    }
+
+    return number;
+
+}
 void clearSecreen(void) {
     system("cls"); 
 }
@@ -115,7 +142,8 @@ void printInformationMenu(void) {
     cout << tabs(2);cout << "["; printf("%-*i", 2, 14);  cout << "]- Logarithm Number" << setw(62) << "|\n";
     cout << tabs(2);cout << "["; printf("%-*i", 2, 15);  cout << "]- Factorial Number" << setw(62) << "|\n";
     cout << tabs(2);cout << "["; printf("%-*i", 2, 16);  cout << "]- Matrix Operation" << setw(62) << "|\n";
-    cout << tabs(2);cout << "["; printf("%-*i", 2, 17);  cout << "]- Exit" << setw(76) << "|\n\n\n";
+    cout << tabs(2);cout << "["; printf("%-*i", 2, 17);  cout << "]- Find the discriminant of a quadratic equation" << setw(33) << "|\n";
+    cout << tabs(2);cout << "["; printf("%-*i", 2, 18);  cout << "]- Exit" << setw(76) << "|\n\n\n";
 
 }
 
@@ -236,7 +264,7 @@ int Squaring(int& number) {
 
 }
 
-int power(int& base, int &expont) {
+int power(int& base, int expont) {
 
     int pow{ 1 };
     for (int i = 1; i <= expont; i++)
@@ -264,7 +292,6 @@ void printElementInTabel(vector<int>& vec) {
 }
 
 void printElementInTabel_String(vector<string>& vec) {
-
 
 
     if (!(vec.empty()))
@@ -397,7 +424,7 @@ void readElementToTabel(vector <int>& vec) {
     cin.ignore();
     while (Choise == 'Y' || Choise == 'y') {
         int number{};
-        number = { readNumber("Enter the number to adding the tabel : ") };
+        number = { readNumberPositive("Enter the number to adding the tabel : ") };
 
         vec.push_back(number);
         cout << tabs(2) << "Are you Adding anther ! Please Sir enter the [Y/y] to be Again Enterd : ";
@@ -464,8 +491,9 @@ void clearAllElementInTabel_String(vector <string>& vec) {
 
 }
 
-//---------------------------- 
+//---------------------------- -------------------------------------------------------------------------
 //Header Operation 
+
 
 void printHeaderSummationOperation(void) {
     clearSecreen();
@@ -677,6 +705,12 @@ void printHeaderFactorialNumberOperation(void) {
     cout << tabs(2) << "|-----------------------------------------------------------------------|\n\n";
 
 }
+void printHeaderDiscriminant(void) {
+    clearSecreen();
+    cout << tabs(2) << "|-----------------------------------------------------------------------|\n";
+    cout << tabs(2) << "|--------------+[ Welcome The Find Discriminan Operation ]+-------------|\n";
+    cout << tabs(2) << "|-----------------------------------------------------------------------|\n\n";
+}
 
 void printHeaderMatrixNumberOperation(void) {
     clearSecreen();
@@ -698,6 +732,9 @@ void printHeaderMatrixNumberFillPositionNumbersOperation(void) {
     cout << tabs(2) << "|--------------+[ Welcome The Department Matrix Fill Row And Column Operation ]+-------------|\n";
     cout << tabs(2) << "|--------------------------------------------------------------------------------------------|\n\n";
 } 
+
+
+
 
 //----------------------------------------------- 
 // Result operation 
@@ -861,7 +898,7 @@ void FunctionAddition(void) {
 
     printHeaderSummationOperation();
    //Create Array Dynamic 
-    sizeArray = { readNumber("Enter the count number to be Addition all : ") };
+    sizeArray = { readNumberPositive("Enter the count number to be Addition all : ") };
     int* array = new int[sizeArray];
 
     fillArrayDynamiclyWithSize_Integer(array, sizeArray);
@@ -887,7 +924,7 @@ void FunctionSubstraction(void) {
 
     printHeaderSubstractionOperation();
     //Create Array Dynamic 
-    sizeArray = { readNumber("Enter the count number to be Substraction all : ") };
+    sizeArray = { readNumberPositive("Enter the count number to be Substraction all : ") };
     int* array = new int[sizeArray];
 
     fillArrayDynamiclyWithSize_Integer(array, sizeArray);
@@ -913,7 +950,7 @@ void FunctionMultiplication(void) {
 
     printHeaderMultiplicationOperation();
     //Create Array Dynamic 
-    sizeArray = { readNumber("Enter the count number to be Multiplication all : ") };
+    sizeArray = { readNumberPositive("Enter the count number to be Multiplication all : ") };
     int* array = new int[sizeArray];
 
     fillArrayDynamiclyWithSize_Integer(array, sizeArray);
@@ -939,7 +976,7 @@ void FunctionSqauring(void) {
     printHeaderSqauringOperation();
 
     int number{};
-    number = { readNumber("Enter the Number : ") };
+    number = { readNumberPositive("Enter the Number : ") };
     cout << endl;
     int result = Squaring(number);
     printResultOperationSquaring(result); 
@@ -976,7 +1013,7 @@ void FunctionEvenOrOdd(void) {
     printHeaderCheakEvenOrOddOperation();
 
     int number{};
-    number = { readNumber("Enter the Number : ") };
+    number = { readNumberPositive("Enter the Number : ") };
     cout << endl;
     string result = returnWordEvenOrOdd(isEvenOrOdd (number));
     printResultString(result , number );
@@ -992,8 +1029,8 @@ void FunctionPower(void) {
     printHeaderPowerOperation();
 
     int number{}, expont{} ;
-    number = { readNumber("Enter the Number : ") };
-    expont = { readNumber("Enter the expont : ") };
+    number = { readNumberPositive("Enter the Number : ") };
+    expont = { readNumberPositive("Enter the expont : ") };
     cout << endl;
     if (number > 0 && expont) {
         int result = power(number, expont);
@@ -1014,7 +1051,7 @@ void FunctionPrimeOrNot(void) {
     printHeaderCheakPrimeOrNotOperation();
 
     int number{};
-    number = { readNumber("Enter the Number : ") };
+    number = { readNumberPositive("Enter the Number : ") };
     cout << endl;
     string result = returnWordPrimeOrNot(CheakNumberPrime(number));
     printResultString(result, number);
@@ -1207,7 +1244,7 @@ void FunctionMax(void) {
     int sizeArray;
     printHeaderMaxOperation();
     //Create Array Dynamic 
-    sizeArray = { readNumber("Enter the count number to be Find Max Number : ") };
+    sizeArray = { readNumberPositive("Enter the count number to be Find Max Number : ") };
     int* array = new int[sizeArray];
     cout << tabs(2) << "!!Note , Please Sir enterd the Integer Numbers - Okey ? \n\n";
 
@@ -1231,7 +1268,7 @@ void FunctionMin(void) {
     printHeaderMinOperation();
     //Create Array Dynamic
     // 
-    sizeArray = { readNumber("Enter the count number to be Find Min Number : ") };
+    sizeArray = { readNumberPositive("Enter the count number to be Find Min Number : ") };
     int* array = new int[sizeArray];
     cout << tabs(2) << "!!Note , Please Sir enterd the Integer Numbers - Okey ? \n\n";
 
@@ -1258,7 +1295,7 @@ void FunctionTreo(void) {
         cout << tabs(2);
         int choise;
         cout << endl;
-        choise = readNumber("Enter the Choise :");
+        choise = readNumberPositive("Enter the Choise :");
 
         switch (choise) {
 
@@ -1289,7 +1326,7 @@ void FunctionNumberMaxAndMin(void) {
         int choise;
 
         cout << endl;
-        choise = readNumber("Enter the Choise :");
+        choise = readNumberPositive("Enter the Choise :");
 
         switch (choise) {
 
@@ -1309,7 +1346,7 @@ void FunctionAbsolute(void) {
     printHeaderAbsoluteValueOperation();
 
     int number{};
-    number = { readNumber("Enter the Number : ") };
+    number = { readNumberPositive("Enter the Number : ") };
     cout << endl;
     int result = MyAbs(number);
     printResultOperationAbsolute(result);
@@ -1342,7 +1379,7 @@ void FunctionFactorial(void) {
     int number{};
     cout << endl << endl;
     cout << tabs(2) << "!!!! Note this operation to find Factorial Integer type number \n\n";
-    number = { readNumber("Enter the Number : ") };
+    number = { readNumberPositive("Enter the Number : ") };
 
     int result = FactorialNumber(number);
 
@@ -1550,8 +1587,8 @@ void FunctionReplaseRowToRow(int& row, int& column, int* Array2D[]) {
         cout << endl;
         printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
         cout << endl;
-        row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
-        row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
+        row1 = { readNumberPositive("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
+        row2 = { readNumberPositive("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
 
         while (row < row1 || row < row1) {
 
@@ -1566,8 +1603,8 @@ void FunctionReplaseRowToRow(int& row, int& column, int* Array2D[]) {
             cout << endl;
             printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
             cout << endl;
-            row1 = { readNumber("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
-            row2 = { readNumber("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
+            row1 = { readNumberPositive("Enter the Row Main , Please Sir Enter Index to Row not Poisitons : ") };
+            row2 = { readNumberPositive("Enter the Row To Replase , Please Sir Enter Index to Row not Poisitons : ") };
 
 
         }
@@ -1603,8 +1640,8 @@ void FunctionReplaseColumnToColumn(int& row, int& column, int* Array2D[]) {
         printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column , "Matrix your enterd Sir ");
         cout << endl;
 
-        int column3 = { readNumber("Enter the column Main , Please Sir Enter Index to column not Poisitons : ") };
-        int column4 = { readNumber("Enter the column To Replase , Please Sir Enter Index to column not Poisitons : ") };
+        int column3 = { readNumberPositive("Enter the column Main , Please Sir Enter Index to column not Poisitons : ") };
+        int column4 = { readNumberPositive("Enter the column To Replase , Please Sir Enter Index to column not Poisitons : ") };
         while (column < column3 || column < column4) {
 
             cout << endl << endl;
@@ -1619,8 +1656,8 @@ void FunctionReplaseColumnToColumn(int& row, int& column, int* Array2D[]) {
             cout << endl;
             printArray2DScpsialSectionFillPositionMatrix(Array2D, row, column, "Matrix your enterd Sir ");
             cout << endl;
-            column3 = { readNumber("Enter the Column Main , Please Sir Enter Index to Column not Poisitons : ") };
-            column4 = { readNumber("Enter the Column To Replase , Please Sir Enter Index to Column not Poisitons : ") };
+            column3 = { readNumberPositive("Enter the Column Main , Please Sir Enter Index to Column not Poisitons : ") };
+            column4 = { readNumberPositive("Enter the Column To Replase , Please Sir Enter Index to Column not Poisitons : ") };
 
         }
         replaceColumnToColumn(Array2D, row, column, column3, column4);
@@ -1706,16 +1743,61 @@ void FunctionMultiplyingInMatrix(int& row, int& column, int* Array2D[]) {
          std::this_thread::sleep_for(std::chrono::seconds(10));
 }
 
+stDiscriminantInfo readInfoDiscriminantFill(stDiscriminantInfo& info ) {
+   
+    info.numberA = readNumber("Enter the Number A : ");
+    info.numberB = readNumber("Enter the Number B : ");
+    info.numberD = readNumber("Enter the Number D : ");
+
+    return info;
+
+}
+
+void FunctionDiscriminant() {
+
+    stDiscriminantInfo info; 
+    clearSecreen(); 
+    printHeaderDiscriminant();
+    cout << endl << endl; 
+
+    readInfoDiscriminantFill(info);
+
+    int resultDiscriminantQueation = (power(info.numberB, 2)) - (4 * (info.numberA * info.numberD));
+
+    if (resultDiscriminantQueation > 0) {
+        cout << endl << endl;
+        cout << tabs(2) << "Since the discriminant is positive, there are two different roots of the equation\n\n";
+        cout << tabs(2) << "Please Sir wait [5]seconds to return of menu and Thank You (:\n";
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+    else if (resultDiscriminantQueation < 0) {
+        cout << endl << endl;
+        cout << tabs(2) << "Since the discriminant is negative, there are no roots to the equation\n\n";
+        cout << tabs(2) << "Please Sir wait [5]seconds to return of menu and Thank You (:\n";
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+    else if (resultDiscriminantQueation == 0) {
+        cout << endl << endl;
+        cout << tabs(2) << "Since the discriminant is zero, there are two equal roots of the equation\n\n";
+        cout << tabs(2) << "Please Sir wait [5]seconds to return of menu and Thank You (:\n";
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+    else {
+        cout << tabs(2) << "Please Sir wait [2]seconds to return of menu and Thank You (:\n";
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+}
 void FunctionMatrix(void) {
 
 
     printHeaderMatrixNumberOperationFillMatrixHello();
 
     cout << endl;
-    int row = { readNumber("Enter the Row ") };
+    int row = { readNumberPositive("Enter the Row ") };
     cout << endl;
 
-    int column = { readNumber("Enter the Column ") };
+    int column = { readNumberPositive("Enter the Column ") };
 
     int** array2D = new int* [row];
 
@@ -1730,7 +1812,7 @@ void FunctionMatrix(void) {
         printHeaderMatrixNumberOperation();
         printInforamtionMenuMatrixFunction();
        
-       int choise = { readNumber("Enter the Operation : ") };
+       int choise = { readNumberPositive("Enter the Operation : ") };
 
         switch (choise) {
 
@@ -1770,13 +1852,17 @@ void ExitCalculator(void) {
 }
 
 
-int main()
-{
+int main(void){
 
     void (*p) (void) = StartCalculator;
+    #if  Run
     p();
-  
+    #else
+             cout << endl << endl;
+            cout << tabs (2) <<  "I'm Not to be run the program (:\n";
+    #endif 
     //Ahmed Jehad Ahmed 
+
  }
 
 
@@ -1798,7 +1884,7 @@ void FunctionDivion(void) {
 
 
         cout << endl;
-        choise = { readNumber("Enter the Operation : ") };
+        choise = { readNumberPositive("Enter the Operation : ") };
         cout << endl;
 
         switch (choise)
@@ -1910,7 +1996,7 @@ void FunctionTabel(void) {
         printHeaderTabelItemOperation();
         printInforamtionMenuTabelOfItemFunction();
         int choise = { 0 };
-        choise = { readNumber("Enter the Operation : ") };
+        choise = { readNumberPositive("Enter the Operation : ") };
 
         switch (choise) {
         case 1:
@@ -1932,12 +2018,12 @@ void StartCalculator(void) {
 
     int choise = { 0 };
 
-    while (choise != 17) {
+    while (choise != 18) {
 
         clearSecreen();
         MenuCalculator();
 
-        choise = { readNumber("Enter the Operation : ") };
+        choise = { readNumberPositive("Enter the Operation : ") };
 
         switch (choise) {
         case 1:
@@ -1988,7 +2074,10 @@ void StartCalculator(void) {
         case 16 :
             FunctionMatrix();
             break;
-        case 17:
+        case 17 : 
+            FunctionDiscriminant(); 
+            break; 
+        case 18:
             ExitCalculator();
             break;
 
