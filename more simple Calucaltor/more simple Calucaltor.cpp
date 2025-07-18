@@ -26,6 +26,46 @@ enum enPrimeOrNot {
     NOT_PRIME = 2
 };
 
+enum enChoiceMainCalculator {
+
+    ekADDITION_NUMBERS = 1 , 
+    ekSUBSTRACT_NUMBERS = 2 , 
+    ekMULIPLCATION_NUMBERS = 3 , 
+    ekDIVION_NUMBERS = 4 , 
+    ekSQURAING_NUMBER = 5,
+    ekSQURAING_ROOT = 6,
+    ekIS_EVEN_OR_ODD_NUMBER = 7,
+    ekPOWER_NUMBER = 8 ,
+    ekTABEL_OF_ITEMS = 9 , 
+    ekIS_PRIME_NUMBER = 10 ,
+    ekTRIGONOMERTRIC_FUNCTIONS = 11 , 
+    ekFIND_MAX_OR_MIN_NUMBER = 12 , 
+    ekABSOLUTE_NUMBER = 13 , 
+    ekLOGARRITHM_NUMBER = 14 , 
+    ekFACTORIAL_NUMBER = 15 , 
+    ekMATRIX_OPERATIONS = 16 , 
+    ekFIND_DISCRIMINANT_QUADATIC_EQUATION = 17 , 
+    ekEXIT_CALCULATOR = 18 
+
+     
+};
+
+enum enChoiceTabelOpertion {
+
+    ekINTEGER_TABEL = 1 , 
+    ekSTRING_TABEL = 2 ,
+    ekBACK_MAIN_MENU = 3 
+};
+
+enum enChoiseDivionOperation {
+
+    ekFIND_MODULES_TWO_FLOAT_NUMBERS = 1 , 
+    ekFIND_MODULES_INTEGER_NUMBERS = 2 , 
+    ekDIVION_TWO_NUMBER =3 , 
+    ekFIND_FRACTION_COMPONET = 4 , 
+    ekFIND_INTEGER_COMPONET = 5 ,
+    ekEXIT_SECTION_DIVION_OPERATION = 6 , 
+};
 struct stDiscriminantInfo {
 
     int numberA{ 0 }; // أ
@@ -1855,6 +1895,7 @@ void ExitCalculator(void) {
 int main(void){
 
     void (*p) (void) = StartCalculator;
+
     #if  Run
     p();
     #else
@@ -1890,7 +1931,7 @@ void FunctionDivion(void) {
         switch (choise)
         {
            
-        case 1:
+        case  enChoiseDivionOperation::ekFIND_MODULES_TWO_FLOAT_NUMBERS :
 
             numberOne = readNumberFloating("Enter the Number One: ");
             numberTwo = readNumberFloating("Enter the Number Two: ");
@@ -1906,7 +1947,7 @@ void FunctionDivion(void) {
             this_thread::sleep_for(chrono::seconds(2));
             break;
 
-        case 2:
+        case enChoiseDivionOperation::ekFIND_MODULES_INTEGER_NUMBERS :
             numberOne = readNumberFloating("Enter the Number One: ");
             numberTwo = readNumberFloating("Enter the Number Two: ");
 
@@ -1924,7 +1965,7 @@ void FunctionDivion(void) {
             this_thread::sleep_for(chrono::seconds(2));
             break;
 
-        case 3:
+        case enChoiseDivionOperation::ekDIVION_TWO_NUMBER  :
 
             numberOne = readNumberFloating("Enter the Number One: ");
          
@@ -1945,7 +1986,7 @@ void FunctionDivion(void) {
             this_thread::sleep_for(chrono::seconds(2));
             break;
 
-        case 4:
+        case enChoiseDivionOperation::ekFIND_FRACTION_COMPONET  :
             numberOne = readNumberFloating("Enter the Number: ");
             {
                 float result = findPresionNumberFloatingPoint(numberOne); 
@@ -1959,7 +2000,7 @@ void FunctionDivion(void) {
             this_thread::sleep_for(chrono::seconds(2));
             break;
 
-        case 5:
+        case enChoiseDivionOperation::ekFIND_INTEGER_COMPONET :
             numberOne = readNumberFloating("Enter the Number: ");
             {
                 int result = findIntegerNumberFloatingPoint(numberOne); 
@@ -1972,7 +2013,7 @@ void FunctionDivion(void) {
             this_thread::sleep_for(chrono::seconds(2));
             break;
 
-        case 6:
+        case enChoiseDivionOperation::ekEXIT_SECTION_DIVION_OPERATION :
             clearSecreen(); 
             StartCalculator();
             break;
@@ -1990,24 +2031,28 @@ void FunctionDivion(void) {
 }
 
 void FunctionTabel(void) {
+
     while (true) {
 
         clearSecreen();
         printHeaderTabelItemOperation();
         printInforamtionMenuTabelOfItemFunction();
         int choise = { 0 };
+
         choise = { readNumberPositive("Enter the Operation : ") };
 
         switch (choise) {
-        case 1:
+        case enChoiceTabelOpertion::ekINTEGER_TABEL  :
             TabelInteger();
             break;
-        case 2:
+        case enChoiceTabelOpertion::ekSTRING_TABEL  :
             TabelString();
             break;
-        case 3:
+        case enChoiceTabelOpertion::ekBACK_MAIN_MENU :
             return;
+
         default:
+
             cout << "Invalid choice! Please try again." << endl;
             this_thread::sleep_for(chrono::seconds(1));
         }
@@ -2026,58 +2071,58 @@ void StartCalculator(void) {
         choise = { readNumberPositive("Enter the Operation : ") };
 
         switch (choise) {
-        case 1:
+        case enChoiceMainCalculator::ekADDITION_NUMBERS  :
             FunctionAddition();
             break;
-        case 2:
+        case enChoiceMainCalculator::ekSUBSTRACT_NUMBERS  :
             FunctionSubstraction();
             break;
-        case 3:
+        case enChoiceMainCalculator::ekMULIPLCATION_NUMBERS  :
             FunctionMultiplication();
             break;
-        case 4:
+        case enChoiceMainCalculator::ekDIVION_NUMBERS  :
             FunctionDivion();
             break;
-        case 5:
+        case enChoiceMainCalculator::ekSQURAING_NUMBER :
             FunctionSqauring();
             break;
-        case 6:
+        case enChoiceMainCalculator::ekSQURAING_ROOT :
             FunctionSqauringRoot();
             break;
-        case 7:
+        case enChoiceMainCalculator::ekIS_EVEN_OR_ODD_NUMBER  :
             FunctionEvenOrOdd();
             break;
-        case 8:
+        case enChoiceMainCalculator::ekPOWER_NUMBER :
             FunctionPower();
             break;
-        case 9:
+        case enChoiceMainCalculator::ekTABEL_OF_ITEMS  :
             FunctionTabel();
             break;
-        case 10:
+        case  enChoiceMainCalculator::ekIS_PRIME_NUMBER  :
             FunctionPrimeOrNot();
             break;
-        case 11:
+        case enChoiceMainCalculator::ekTRIGONOMERTRIC_FUNCTIONS :
             FunctionTreo();
             break; 
-        case 12 : 
+        case enChoiceMainCalculator::ekFIND_MAX_OR_MIN_NUMBER :
             FunctionNumberMaxAndMin();
             break;
-        case 13 : 
+        case enChoiceMainCalculator::ekABSOLUTE_NUMBER  :
             FunctionAbsolute(); 
             break; 
-        case 14 :
+        case enChoiceMainCalculator::ekLOGARRITHM_NUMBER :
             FunctionLog(); 
             break;
-        case 15:
+        case enChoiceMainCalculator::ekFACTORIAL_NUMBER :
             FunctionFactorial();
             break;
-        case 16 :
+        case enChoiceMainCalculator::ekMATRIX_OPERATIONS  :
             FunctionMatrix();
             break;
-        case 17 : 
+        case enChoiceMainCalculator::ekFIND_DISCRIMINANT_QUADATIC_EQUATION :
             FunctionDiscriminant(); 
             break; 
-        case 18:
+        case enChoiceMainCalculator::ekEXIT_CALCULATOR :
             ExitCalculator();
             break;
 
